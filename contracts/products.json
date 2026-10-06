@@ -1,0 +1,20 @@
+{
+  "primary_key": [
+    "product_id"
+  ],
+  "columns": {
+    "product_id": "int64",
+    "sku": "str",
+    "department": "str",
+    "category": "str",
+    "unit_price": "float64",
+    "cost_price": "float64",
+    "supplier_id": "int64",
+    "product_status": "str"
+  },
+  "owner": "Data Platform",
+  "frequency": "daily",
+  "sla_minutes": 60,
+  "classification": "internal",
+  "sensitivity": "non_personal"
+}

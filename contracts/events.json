@@ -1,0 +1,23 @@
+{
+  "primary_key": [
+    "event_id"
+  ],
+  "foreign_keys": {
+    "customer_id": "customers.customer_id",
+    "order_id": "orders.order_id (nullable)"
+  },
+  "columns": {
+    "event_id": "int64",
+    "event_timestamp": "datetime64[us]",
+    "customer_id": "int64",
+    "order_id": "float64",
+    "event_type": "str",
+    "device_type": "str",
+    "session_duration_seconds": "int64"
+  },
+  "owner": "Digital Analytics",
+  "frequency": "15min",
+  "sla_minutes": 10,
+  "classification": "internal",
+  "sensitivity": "behavioral"
+}

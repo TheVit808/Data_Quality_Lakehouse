@@ -1,0 +1,79 @@
+contract:
+  name: products
+  version: 1.0.0
+  status: active
+  description: Fato de produtos
+  owner:
+    technical: data-platform@empresa.example
+    business: commerce-analytics@empresa.example
+  update:
+    frequency: daily
+    expected_arrival: "every hour at minute 15"
+    sla_minutes: 60
+  governance:
+    classification: internal
+    sensitivity: personal_indirect
+    retention_days: 730
+    source_system: ecommerce_platform
+  storage:
+    bronze_format: parquet
+    silver_format: parquet
+    gold_format: parquet
+    partition_by:
+      bronze: [ingest_date]
+      silver: [order_date]
+      gold: [order_date]
+
+schema:
+  primary_key: [product_id]
+  columns:
+    - name: product_id
+      type: int64
+      nullable: false
+      description: Identificador único do produto
+    - name: sku
+      type: string
+      nullable: false
+      description: Código de barras do produto
+    - name: department
+      type: string
+      nullable: false
+      description: Departamento ao qual o produto pertence
+    - name: category
+      type: string
+      nullable: false
+      description: Categoria do produto
+    - name: unit_price
+      type: decimal(18,2)
+      nullable: false
+      description: Preço unitário do produto
+    - name: cost_price
+      type: decimal(18,2)
+      nullable: false
+      description: Preço de custo do produto
+    - name: supplier_id
+      type: int64
+      nullable: false
+      description: Identificador do fornecedor
+    - name: product_status
+      type: string
+      nullable: false
+      description: Status do produto
+quality:
+  critical_rules:
+    - schema_matches_contract
+    - primary_key_not_null
+    - primary_key_unique
+    - foreign_keys_exist
+    - product_status_domain
+    - quantity_positive
+  warning_rules:
+    - channel_completeness
+    - order_amount_outlier_rate
+    - freshness_within_sla
+
+compatibility:
+  policy: backward_compatible
+  breaking_change_requires: major_version
+  additive_nullable_column: minor_version
+  documentation_only_change: patch_version

@@ -1,0 +1,28 @@
+{
+  "primary_key": [
+    "order_id"
+  ],
+  "foreign_keys": {
+    "customer_id": "customers.customer_id",
+    "product_id": "products.product_id"
+  },
+  "columns": {
+    "order_id": "int64",
+    "order_date": "datetime64[s]",
+    "customer_id": "int64",
+    "product_id": "int64",
+    "channel": "str",
+    "quantity": "int64",
+    "unit_price_at_order": "float64",
+    "discount_rate": "float64",
+    "shipping_amount": "float64",
+    "order_amount": "float64",
+    "order_status": "str",
+    "delivery_days": "float64"
+  },
+  "owner": "Commerce Analytics",
+  "frequency": "hourly",
+  "sla_minutes": 30,
+  "classification": "confidential",
+  "sensitivity": "personal_indirect"
+}

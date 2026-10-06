@@ -1,0 +1,22 @@
+{
+  "primary_key": [
+    "payment_id"
+  ],
+  "foreign_keys": {
+    "order_id": "orders.order_id"
+  },
+  "columns": {
+    "payment_id": "int64",
+    "order_id": "int64",
+    "payment_date": "datetime64[s]",
+    "payment_method": "str",
+    "payment_status": "str",
+    "amount_paid": "float64",
+    "installments": "int64"
+  },
+  "owner": "Payments",
+  "frequency": "hourly",
+  "sla_minutes": 15,
+  "classification": "confidential",
+  "sensitivity": "financial"
+}

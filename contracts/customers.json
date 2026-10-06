@@ -1,0 +1,19 @@
+{
+  "primary_key": [
+    "customer_id"
+  ],
+  "columns": {
+    "customer_id": "int64",
+    "customer_segment": "str",
+    "state": "str",
+    "city": "str",
+    "registration_date": "datetime64[s]",
+    "marketing_opt_in": "bool",
+    "customer_status": "str"
+  },
+  "owner": "Data Platform",
+  "frequency": "daily",
+  "sla_minutes": 60,
+  "classification": "internal",
+  "sensitivity": "personal_low"
+}

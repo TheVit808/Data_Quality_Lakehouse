@@ -1,0 +1,78 @@
+contract:
+  name: customers
+  version: 1.0.0
+  status: active
+  description: Fato de clientes
+  owner:
+    technical: data-platform@empresa.example
+    business: crm@empresa.example
+  update:
+    frequency: daily
+    expected_arrival: "every hour at minute 15"
+    sla_minutes: 60
+  governance:
+    classification: internal
+    sensitivity: personal_low
+    retention_days: 730
+    source_system: ecommerce_platform
+  storage:
+    bronze_format: parquet
+    silver_format: parquet
+    gold_format: parquet
+    partition_by:
+      bronze: [ingest_date]
+      silver: [order_date]
+      gold: [order_date]
+
+schema:
+  primary_key: [customer_id]
+  columns:
+    - name: customer_id
+      type: int64
+      nullable: false
+      description: Identificador único do cliente
+    - name: customer_segment
+      type: string
+      nullable: false
+      description: Segmento do cliente
+    - name: state
+      type: string
+      nullable: false
+      description: Estado do cliente
+    - name: city
+      type: string
+      nullable: false
+      description: Cidade do cliente
+    - name: registration_date
+      type: date
+      nullable: false
+      description: Data de registro do cliente
+    - name: marketing_opt_in 
+      type: boolean
+      nullable: false
+      description: Opt-in para marketing
+    - name: customer_status
+      type: string
+      nullable: false
+      accepted_values: [active, inactive, suspended]
+      description: Status do cliente
+    
+
+quality:
+  critical_rules:
+    - schema_matches_contract
+    - primary_key_not_null
+    - primary_key_unique
+    - foreign_keys_exist
+    - customer_status_domain
+    - registration_date_not_in_future
+  warning_rules:
+    - channel_completeness
+    - customer_status_outlier_rate
+    - freshness_within_sla
+
+compatibility:
+  policy: backward_compatible
+  breaking_change_requires: major_version
+  additive_nullable_column: minor_version
+  documentation_only_change: patch_version

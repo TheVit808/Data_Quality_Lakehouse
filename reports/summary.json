@@ -1,0 +1,40 @@
+{
+  "seed": 20251006,
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "row_counts_bronze": {
+    "customers": 5000,
+    "products": 300,
+    "orders": 30002,
+    "payments": 30000,
+    "events": 60000
+  },
+  "row_counts_gold": {
+    "customers": 5000,
+    "products": 300,
+    "orders": 29985,
+    "payments": 29970,
+    "events": 60000
+  },
+  "defect_count": 295,
+  "quality_checks": 16,
+  "failed_checks": 6,
+  "critical_failures": 5,
+  "key_metrics": {
+    "gross_order_amount_bronze": 7941771.996548726,
+    "median_order_amount": 168.42,
+    "completed_order_rate": 0.760280140070035,
+    "approved_payment_rate": 0.8137137137137137,
+    "event_purchase_share": 0.08066666666666666
+  },
+  "quality_scores_by_dataset": {
+    "customers": 100.0,
+    "events": 66.67,
+    "orders": 20.0,
+    "payments": 50.0,
+    "products": 100.0
+  },
+  "dataset_fingerprint": "2d05efa658cd074985a2fbce501ccbaaab0634c99f0c34ff9ed751a63bccac51"
+}

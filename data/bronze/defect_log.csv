@@ -1,0 +1,296 @@
+dataset,rule,row_number,detail
+customers,completeness_state,2366,state nulo inesperado
+customers,completeness_state,4345,state nulo inesperado
+customers,completeness_state,4620,state nulo inesperado
+customers,completeness_state,528,state nulo inesperado
+customers,completeness_state,4538,state nulo inesperado
+customers,completeness_state,4780,state nulo inesperado
+customers,completeness_state,1623,state nulo inesperado
+customers,completeness_state,2885,state nulo inesperado
+customers,completeness_state,1275,state nulo inesperado
+customers,completeness_state,3832,state nulo inesperado
+customers,completeness_state,2400,state nulo inesperado
+customers,completeness_state,4696,state nulo inesperado
+customers,completeness_state,2320,state nulo inesperado
+customers,completeness_state,1030,state nulo inesperado
+customers,completeness_state,2312,state nulo inesperado
+customers,completeness_state,1631,state nulo inesperado
+customers,completeness_state,4733,state nulo inesperado
+customers,completeness_state,1299,state nulo inesperado
+customers,completeness_state,786,state nulo inesperado
+customers,completeness_state,2543,state nulo inesperado
+customers,completeness_state,3207,state nulo inesperado
+customers,completeness_state,2780,state nulo inesperado
+customers,completeness_state,1584,state nulo inesperado
+customers,completeness_state,185,state nulo inesperado
+customers,completeness_state,2911,state nulo inesperado
+customers,completeness_state,3544,state nulo inesperado
+customers,completeness_state,737,state nulo inesperado
+customers,completeness_state,2575,state nulo inesperado
+customers,completeness_state,3209,state nulo inesperado
+customers,completeness_state,309,state nulo inesperado
+customers,completeness_state,4659,state nulo inesperado
+customers,completeness_state,3608,state nulo inesperado
+customers,completeness_state,514,state nulo inesperado
+customers,completeness_state,718,state nulo inesperado
+customers,completeness_state,1199,state nulo inesperado
+customers,completeness_state,429,state nulo inesperado
+customers,completeness_state,1176,state nulo inesperado
+customers,completeness_state,4830,state nulo inesperado
+customers,completeness_state,1887,state nulo inesperado
+customers,completeness_state,3030,state nulo inesperado
+customers,completeness_state,4056,state nulo inesperado
+customers,completeness_state,3993,state nulo inesperado
+customers,completeness_state,2516,state nulo inesperado
+customers,completeness_state,3957,state nulo inesperado
+customers,completeness_state,3641,state nulo inesperado
+customers,completeness_state,4711,state nulo inesperado
+customers,completeness_state,2758,state nulo inesperado
+customers,completeness_state,905,state nulo inesperado
+customers,completeness_state,1806,state nulo inesperado
+customers,completeness_state,2042,state nulo inesperado
+orders,completeness_channel,19864,channel nulo inesperado
+orders,completeness_channel,5049,channel nulo inesperado
+orders,completeness_channel,308,channel nulo inesperado
+orders,completeness_channel,29216,channel nulo inesperado
+orders,completeness_channel,28505,channel nulo inesperado
+orders,completeness_channel,7018,channel nulo inesperado
+orders,completeness_channel,6804,channel nulo inesperado
+orders,completeness_channel,1464,channel nulo inesperado
+orders,completeness_channel,15657,channel nulo inesperado
+orders,completeness_channel,20726,channel nulo inesperado
+orders,completeness_channel,12140,channel nulo inesperado
+orders,completeness_channel,29137,channel nulo inesperado
+orders,completeness_channel,23979,channel nulo inesperado
+orders,completeness_channel,19734,channel nulo inesperado
+orders,completeness_channel,16908,channel nulo inesperado
+orders,completeness_channel,2208,channel nulo inesperado
+orders,completeness_channel,21048,channel nulo inesperado
+orders,completeness_channel,18338,channel nulo inesperado
+orders,completeness_channel,12858,channel nulo inesperado
+orders,completeness_channel,12051,channel nulo inesperado
+orders,completeness_channel,24075,channel nulo inesperado
+orders,completeness_channel,26753,channel nulo inesperado
+orders,completeness_channel,16778,channel nulo inesperado
+orders,completeness_channel,29100,channel nulo inesperado
+orders,completeness_channel,6983,channel nulo inesperado
+orders,completeness_channel,3011,channel nulo inesperado
+orders,completeness_channel,17826,channel nulo inesperado
+orders,completeness_channel,28318,channel nulo inesperado
+orders,completeness_channel,15492,channel nulo inesperado
+orders,completeness_channel,7686,channel nulo inesperado
+orders,completeness_channel,12294,channel nulo inesperado
+orders,completeness_channel,10760,channel nulo inesperado
+orders,completeness_channel,18947,channel nulo inesperado
+orders,completeness_channel,5148,channel nulo inesperado
+orders,completeness_channel,25800,channel nulo inesperado
+orders,completeness_channel,13230,channel nulo inesperado
+orders,completeness_channel,29405,channel nulo inesperado
+orders,completeness_channel,26098,channel nulo inesperado
+orders,completeness_channel,16058,channel nulo inesperado
+orders,completeness_channel,23822,channel nulo inesperado
+orders,completeness_channel,20600,channel nulo inesperado
+orders,completeness_channel,12931,channel nulo inesperado
+orders,completeness_channel,21958,channel nulo inesperado
+orders,completeness_channel,5620,channel nulo inesperado
+orders,completeness_channel,22169,channel nulo inesperado
+orders,completeness_channel,17233,channel nulo inesperado
+orders,completeness_channel,27262,channel nulo inesperado
+orders,completeness_channel,6059,channel nulo inesperado
+orders,completeness_channel,27866,channel nulo inesperado
+orders,completeness_channel,12371,channel nulo inesperado
+orders,completeness_channel,29973,channel nulo inesperado
+orders,completeness_channel,13469,channel nulo inesperado
+orders,completeness_channel,24041,channel nulo inesperado
+orders,completeness_channel,14851,channel nulo inesperado
+orders,completeness_channel,22869,channel nulo inesperado
+orders,completeness_channel,18805,channel nulo inesperado
+orders,completeness_channel,2471,channel nulo inesperado
+orders,completeness_channel,19897,channel nulo inesperado
+orders,completeness_channel,28556,channel nulo inesperado
+orders,completeness_channel,28912,channel nulo inesperado
+orders,completeness_channel,26438,channel nulo inesperado
+orders,completeness_channel,6449,channel nulo inesperado
+orders,completeness_channel,514,channel nulo inesperado
+orders,completeness_channel,2185,channel nulo inesperado
+orders,completeness_channel,10714,channel nulo inesperado
+orders,completeness_channel,6499,channel nulo inesperado
+orders,completeness_channel,22637,channel nulo inesperado
+orders,completeness_channel,2615,channel nulo inesperado
+orders,completeness_channel,2773,channel nulo inesperado
+orders,completeness_channel,24655,channel nulo inesperado
+orders,completeness_channel,17882,channel nulo inesperado
+orders,completeness_channel,11976,channel nulo inesperado
+orders,completeness_channel,494,channel nulo inesperado
+orders,completeness_channel,22776,channel nulo inesperado
+orders,completeness_channel,7170,channel nulo inesperado
+orders,completeness_channel,24175,channel nulo inesperado
+orders,completeness_channel,24624,channel nulo inesperado
+orders,completeness_channel,22826,channel nulo inesperado
+orders,completeness_channel,27389,channel nulo inesperado
+orders,completeness_channel,24269,channel nulo inesperado
+orders,completeness_channel,19494,channel nulo inesperado
+orders,completeness_channel,19357,channel nulo inesperado
+orders,completeness_channel,14472,channel nulo inesperado
+orders,completeness_channel,16547,channel nulo inesperado
+orders,completeness_channel,18356,channel nulo inesperado
+orders,completeness_channel,14909,channel nulo inesperado
+orders,completeness_channel,1324,channel nulo inesperado
+orders,completeness_channel,15503,channel nulo inesperado
+orders,completeness_channel,15102,channel nulo inesperado
+orders,completeness_channel,6278,channel nulo inesperado
+products,completeness_unit_price,243,preço nulo inesperado
+products,completeness_unit_price,52,preço nulo inesperado
+products,completeness_unit_price,247,preço nulo inesperado
+products,completeness_unit_price,282,preço nulo inesperado
+products,completeness_unit_price,140,preço nulo inesperado
+products,completeness_unit_price,104,preço nulo inesperado
+products,completeness_unit_price,159,preço nulo inesperado
+products,completeness_unit_price,202,preço nulo inesperado
+products,completeness_unit_price,123,preço nulo inesperado
+products,completeness_unit_price,8,preço nulo inesperado
+products,completeness_unit_price,169,preço nulo inesperado
+products,completeness_unit_price,292,preço nulo inesperado
+orders,domain_order_status,26292,status fora do domínio
+orders,domain_order_status,18657,status fora do domínio
+orders,domain_order_status,23320,status fora do domínio
+orders,domain_order_status,15383,status fora do domínio
+orders,domain_order_status,24025,status fora do domínio
+orders,domain_order_status,1239,status fora do domínio
+orders,domain_order_status,7991,status fora do domínio
+orders,domain_order_status,19021,status fora do domínio
+orders,domain_order_status,7654,status fora do domínio
+orders,domain_order_status,22847,status fora do domínio
+orders,domain_order_status,5895,status fora do domínio
+orders,domain_order_status,453,status fora do domínio
+orders,domain_order_status,4895,status fora do domínio
+orders,domain_order_status,26596,status fora do domínio
+orders,domain_order_status,8551,status fora do domínio
+orders,domain_order_status,22186,status fora do domínio
+orders,domain_order_status,6309,status fora do domínio
+orders,domain_order_status,11212,status fora do domínio
+orders,domain_order_status,16072,status fora do domínio
+orders,domain_order_status,28682,status fora do domínio
+orders,domain_order_status,18082,status fora do domínio
+orders,domain_order_status,3499,status fora do domínio
+orders,domain_order_status,6295,status fora do domínio
+orders,domain_order_status,28714,status fora do domínio
+orders,domain_order_status,22707,status fora do domínio
+orders,domain_order_status,9020,status fora do domínio
+orders,domain_order_status,22979,status fora do domínio
+orders,domain_order_status,11153,status fora do domínio
+orders,domain_order_status,14014,status fora do domínio
+orders,domain_order_status,21383,status fora do domínio
+orders,domain_order_status,10063,status fora do domínio
+orders,domain_order_status,7719,status fora do domínio
+orders,domain_order_status,23203,status fora do domínio
+orders,domain_order_status,9402,status fora do domínio
+orders,domain_order_status,11069,status fora do domínio
+orders,positive_quantity,28334,quantidade não positiva
+orders,positive_quantity,8545,quantidade não positiva
+orders,positive_quantity,5757,quantidade não positiva
+orders,positive_quantity,23241,quantidade não positiva
+orders,positive_quantity,16948,quantidade não positiva
+orders,positive_quantity,24698,quantidade não positiva
+orders,positive_quantity,23903,quantidade não positiva
+orders,positive_quantity,963,quantidade não positiva
+orders,positive_quantity,10996,quantidade não positiva
+orders,positive_quantity,9442,quantidade não positiva
+orders,positive_quantity,6452,quantidade não positiva
+orders,positive_quantity,24587,quantidade não positiva
+orders,positive_quantity,8650,quantidade não positiva
+orders,positive_quantity,19859,quantidade não positiva
+orders,positive_quantity,9042,quantidade não positiva
+orders,positive_quantity,18400,quantidade não positiva
+orders,positive_quantity,27866,quantidade não positiva
+orders,positive_quantity,16070,quantidade não positiva
+orders,positive_quantity,20474,quantidade não positiva
+orders,positive_quantity,2515,quantidade não positiva
+orders,positive_quantity,5322,quantidade não positiva
+orders,positive_quantity,3353,quantidade não positiva
+orders,positive_quantity,27294,quantidade não positiva
+orders,positive_quantity,14917,quantidade não positiva
+orders,positive_quantity,26456,quantidade não positiva
+payments,domain_payment_method,19768,método fora do domínio
+payments,domain_payment_method,8417,método fora do domínio
+payments,domain_payment_method,22875,método fora do domínio
+payments,domain_payment_method,15202,método fora do domínio
+payments,domain_payment_method,25840,método fora do domínio
+payments,domain_payment_method,18086,método fora do domínio
+payments,domain_payment_method,1689,método fora do domínio
+payments,domain_payment_method,3538,método fora do domínio
+payments,domain_payment_method,14316,método fora do domínio
+payments,domain_payment_method,23959,método fora do domínio
+payments,domain_payment_method,16930,método fora do domínio
+payments,domain_payment_method,21191,método fora do domínio
+payments,domain_payment_method,28124,método fora do domínio
+payments,domain_payment_method,2454,método fora do domínio
+payments,domain_payment_method,24668,método fora do domínio
+payments,domain_payment_method,1059,método fora do domínio
+payments,domain_payment_method,7203,método fora do domínio
+payments,domain_payment_method,6008,método fora do domínio
+payments,domain_payment_method,26559,método fora do domínio
+payments,domain_payment_method,19443,método fora do domínio
+orders,referential_customer_id,13158,cliente inexistente
+orders,referential_customer_id,10869,cliente inexistente
+orders,referential_customer_id,1264,cliente inexistente
+orders,referential_customer_id,6806,cliente inexistente
+orders,referential_customer_id,11746,cliente inexistente
+orders,referential_customer_id,13926,cliente inexistente
+orders,referential_customer_id,11846,cliente inexistente
+orders,referential_customer_id,26079,cliente inexistente
+orders,referential_customer_id,6232,cliente inexistente
+orders,referential_customer_id,8588,cliente inexistente
+orders,referential_customer_id,21753,cliente inexistente
+orders,referential_customer_id,25401,cliente inexistente
+orders,referential_customer_id,1830,cliente inexistente
+orders,referential_customer_id,3670,cliente inexistente
+orders,referential_customer_id,25420,cliente inexistente
+payments,referential_order_id,18948,pedido inexistente
+payments,referential_order_id,26237,pedido inexistente
+payments,referential_order_id,2292,pedido inexistente
+payments,referential_order_id,21335,pedido inexistente
+payments,referential_order_id,2687,pedido inexistente
+payments,referential_order_id,20053,pedido inexistente
+payments,referential_order_id,6652,pedido inexistente
+payments,referential_order_id,22867,pedido inexistente
+payments,referential_order_id,19137,pedido inexistente
+payments,referential_order_id,28279,pedido inexistente
+payments,referential_order_id,14711,pedido inexistente
+payments,referential_order_id,12319,pedido inexistente
+payments,referential_order_id,2513,pedido inexistente
+payments,referential_order_id,8883,pedido inexistente
+payments,referential_order_id,740,pedido inexistente
+orders,uniqueness_order_id,30000,pedido duplicado
+orders,uniqueness_order_id,30001,pedido duplicado
+events,freshness_event_timestamp,0,timestamp futuro ao período de referência
+orders,outlier_order_amount,22009,ticket e quantidade extremos
+orders,outlier_order_amount,21166,ticket e quantidade extremos
+orders,outlier_order_amount,25590,ticket e quantidade extremos
+orders,outlier_order_amount,8130,ticket e quantidade extremos
+orders,outlier_order_amount,8087,ticket e quantidade extremos
+orders,outlier_order_amount,1458,ticket e quantidade extremos
+orders,outlier_order_amount,9386,ticket e quantidade extremos
+orders,outlier_order_amount,7810,ticket e quantidade extremos
+orders,outlier_order_amount,7616,ticket e quantidade extremos
+orders,outlier_order_amount,24814,ticket e quantidade extremos
+orders,outlier_order_amount,7232,ticket e quantidade extremos
+orders,outlier_order_amount,11619,ticket e quantidade extremos
+orders,outlier_order_amount,18951,ticket e quantidade extremos
+orders,outlier_order_amount,318,ticket e quantidade extremos
+orders,outlier_order_amount,10058,ticket e quantidade extremos
+orders,outlier_order_amount,12554,ticket e quantidade extremos
+orders,outlier_order_amount,5013,ticket e quantidade extremos
+orders,outlier_order_amount,12265,ticket e quantidade extremos
+orders,outlier_order_amount,7014,ticket e quantidade extremos
+orders,outlier_order_amount,19664,ticket e quantidade extremos
+orders,outlier_order_amount,3737,ticket e quantidade extremos
+orders,outlier_order_amount,25181,ticket e quantidade extremos
+orders,outlier_order_amount,29792,ticket e quantidade extremos
+orders,outlier_order_amount,17160,ticket e quantidade extremos
+orders,outlier_order_amount,24686,ticket e quantidade extremos
+orders,outlier_order_amount,22019,ticket e quantidade extremos
+orders,outlier_order_amount,16884,ticket e quantidade extremos
+orders,outlier_order_amount,3248,ticket e quantidade extremos
+orders,outlier_order_amount,11486,ticket e quantidade extremos
+orders,outlier_order_amount,534,ticket e quantidade extremos
