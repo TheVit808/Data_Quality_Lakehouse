@@ -1,18 +1,18 @@
 contract:
-  name: orders
+  name: payments
   version: 1.0.0
   status: active
-  description: Fato de pedidos omnichannel
+  description: Fato de pagamentos omnichannel
   owner:
     technical: data-platform@empresa.example
     business: commerce-analytics@empresa.example
   update:
     frequency: hourly
     expected_arrival: "every hour at minute 15"
-    sla_minutes: 30
+    sla_minutes: 15
   governance:
     classification: confidential
-    sensitivity: personal_indirect
+    sensitivity: financial
     retention_days: 730
     source_system: ecommerce_platform
   storage:
@@ -25,65 +25,41 @@ contract:
       gold: [order_date]
 
 schema:
-  primary_key: [order_id]
+  primary_key: [payment_id]
   foreign_keys:
-    customer_id: customers.customer_id
-    product_id: products.product_id
+    order_id: orders.order_id
   columns:
+    - name: payment_id
+      type: int64
+      nullable: false
+      description: Identificador único do pagamento
     - name: order_id
       type: int64
       nullable: false
-      description: Identificador único do pedido
-    - name: order_date
+      references: orders.order_id
+      description: Pedido associado ao pagamento
+    - name: payment_date
       type: date
       nullable: false
-      description: Data de criação do pedido
-    - name: customer_id
+      description: Data de criação do pagamento
+    - name: payment_method
       type: int64
       nullable: false
-      references: customers.customer_id
-      description: Cliente responsável pelo pedido
-    - name: product_id
-      type: int64
-      nullable: false
-      references: products.product_id
-      description: Produto vendido
-    - name: channel
+      description: Método de pagamento
+    - name: payment_status
       type: string
       nullable: false
-      accepted_values: [app, web, store, marketplace, unknown]
-      description: Canal de venda
-    - name: quantity
-      type: int32
+      accepted_values: [approved, declined, pending]
+      description: Status do pagamento
+    - name: amount_paid
+      type: decimal(18,2)
       nullable: false
       constraints: ["value > 0"]
-      description: Quantidade de unidades
-    - name: unit_price_at_order
-      type: decimal(18,2)
-      nullable: false
-      description: Preço unitário no momento da venda
-    - name: discount_rate
-      type: decimal(8,6)
-      nullable: false
-      constraints: ["value >= 0", "value <= 1"]
-      description: Desconto entre zero e um
-    - name: shipping_amount
-      type: decimal(18,2)
-      nullable: false
-      description: Valor do frete
-    - name: order_amount
-      type: decimal(18,2)
-      nullable: false
-      description: Valor líquido do pedido
-    - name: order_status
-      type: string
-      nullable: false
-      accepted_values: [completed, cancelled, returned, pending]
-      description: Estado do pedido
-    - name: delivery_days
+      description: Valor pago
+    - name: installments
       type: int32
-      nullable: true
-      description: Dias de entrega; nulo quando não concluído
+      nullable: false
+      description: Número de parcelas
 
 quality:
   critical_rules:
@@ -91,11 +67,11 @@ quality:
     - primary_key_not_null
     - primary_key_unique
     - foreign_keys_exist
-    - order_status_domain
-    - quantity_positive
+    - payment_status_domain
+    - amount_paid_positive
   warning_rules:
-    - channel_completeness
-    - order_amount_outlier_rate
+    - installments_completeness
+    - amount_paid_outlier_rate
     - freshness_within_sla
 
 compatibility:

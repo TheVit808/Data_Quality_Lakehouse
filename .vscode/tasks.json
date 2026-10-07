@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Validar contratos",
+      "type": "shell",
+      "command": "python -m pytest -q tests/validate_contracts.py",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Executar pipeline Trilha A",
+      "type": "shell",
+      "command": ".venv/Scripts/python.exe",
+      "args": [
+        "src/pipeline/build_layers.py"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Gerar dataset sintético",
+      "type": "shell",
+      "command": "python generate_dataset.py",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

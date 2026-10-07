@@ -1,0 +1,78 @@
+catalog_version: 1.0.0
+last_updated: 2025-12-31
+owner: data-platform@empresa.example
+assets:
+  - dataset: customers
+    domain: customer
+    technical_owner: data-platform@empresa.example
+    business_owner: crm@empresa.example
+    frequency: daily
+    sla_minutes: 60
+    classification: internal
+    sensitivity: personal_low
+    bronze_path: data/bronze/customers/
+    silver_path: data/silver/customers/
+    gold_path: data/gold/dim_customer/
+    contract: contracts/customers.yml
+    retention_days: 730
+    pii: true
+
+  - dataset: products
+    domain: catalog
+    technical_owner: data-platform@empresa.example
+    business_owner: merchandising@empresa.example
+    frequency: daily
+    sla_minutes: 60
+    classification: internal
+    sensitivity: non_personal
+    bronze_path: data/bronze/products/
+    silver_path: data/silver/products/
+    gold_path: data/gold/dim_product/
+    contract: contracts/products.yml
+    retention_days: 730
+    pii: false
+
+  - dataset: orders
+    domain: commerce
+    technical_owner: data-platform@empresa.example
+    business_owner: commerce-analytics@empresa.example
+    frequency: hourly
+    sla_minutes: 30
+    classification: confidential
+    sensitivity: personal_indirect
+    bronze_path: data/bronze/orders/
+    silver_path: data/silver/orders/
+    gold_path: data/gold/fact_order/
+    contract: contracts/orders.yml
+    retention_days: 730
+    pii: true
+
+  - dataset: payments
+    domain: payments
+    technical_owner: data-platform@empresa.example
+    business_owner: finance@empresa.example
+    frequency: hourly
+    sla_minutes: 15
+    classification: confidential
+    sensitivity: financial
+    bronze_path: data/bronze/payments/
+    silver_path: data/silver/payments/
+    gold_path: data/gold/fact_payment/
+    contract: contracts/payments.yml
+    retention_days: 2555
+    pii: true
+
+  - dataset: events
+    domain: digital-analytics
+    technical_owner: data-platform@empresa.example
+    business_owner: digital-analytics@empresa.example
+    frequency: 15min
+    sla_minutes: 10
+    classification: internal
+    sensitivity: behavioral
+    bronze_path: data/bronze/events/
+    silver_path: data/silver/events/
+    gold_path: data/gold/fact_event/
+    contract: contracts/events.yml
+    retention_days: 365
+    pii: true
