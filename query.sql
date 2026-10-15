@@ -1,0 +1,28 @@
+﻿CREATE OR REPLACE VIEW quality_runs AS 
+SELECT * FROM read_parquet('data/gold/quality_runs.parquet');
+
+SELECT 
+    dataset,
+    COUNT(*) AS checks,
+    SUM(CASE WHEN status = 'PASS' THEN 1 ELSE 0 END) AS passed,
+    SUM(CASE WHEN status = 'FAIL' THEN 1 ELSE 0 END) AS failed
+FROM quality_runs
+GROUP BY dataset
+ORDER BY dataset;
+
+SELECT 
+    dataset, 
+    rule, 
+    severity, 
+    detail
+FROM quality_runs
+WHERE status = 'FAIL'
+ORDER BY severity, dataset, rule;
+
+SELECT 
+    run_id, 
+    dataset,
+    ROUND(100.0 * SUM(CASE WHEN status = 'PASS' THEN 1 ELSE 0 END) / COUNT(*), 2) AS pass_rate
+FROM quality_runs
+GROUP BY run_id, dataset
+ORDER BY run_id DESC, dataset;

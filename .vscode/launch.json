@@ -2,10 +2,21 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Pipeline Trilha A",
+      "name": "Trilha B — Quality Checks",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/src/pipeline/build_layers.py",
+      "module": "src.quality.cli",
+      "args": ["--layer", "bronze"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true
+    },
+    {
+      "name": "Trilha B — Testes",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-q", "tests/test_checks.py"],
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
       "justMyCode": true

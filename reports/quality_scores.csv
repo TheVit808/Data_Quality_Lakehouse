@@ -1,0 +1,6 @@
+dataset,score,checks,passed,failed,critical_failures
+customers,80.0,7,6,1,1
+events,100.0,9,9,0,0
+orders,100.0,10,10,0,0
+payments,100.0,7,7,0,0
+products,84.38,8,7,1,1

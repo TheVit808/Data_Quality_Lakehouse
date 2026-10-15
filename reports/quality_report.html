@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Relatório de qualidade qr_06054b635e9f</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 32px; color: #1f2937; }
+h1 { color: #0f3d5e; }
+.cards { display: flex; gap: 16px; margin: 20px 0; }
+.card { border: 1px solid #d1d5db; border-radius: 8px; padding: 16px; min-width: 150px; }
+.card strong { display: block; font-size: 28px; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 24px; }
+th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+th { background: #e5eef5; }
+.fail { background: #fee2e2; }
+</style>
+</head>
+<body>
+<h1>Relatório de qualidade — qr_06054b635e9f</h1>
+<div class="cards">
+<div class="card">Score médio<strong>92.88</strong></div>
+<div class="card">Checks<strong>41</strong></div>
+<div class="card">Falhas<strong>2</strong></div>
+</div>
+<h2>Score por dataset</h2>
+<table border="1" class="dataframe scores">
+  <thead>
+    <tr style="text-align: right;">
+      <th>dataset</th>
+      <th>score</th>
+      <th>checks</th>
+      <th>passed</th>
+      <th>failed</th>
+      <th>critical_failures</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>customers</td>
+      <td>80.00</td>
+      <td>7</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>events</td>
+      <td>100.00</td>
+      <td>9</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>orders</td>
+      <td>100.00</td>
+      <td>10</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>payments</td>
+      <td>100.00</td>
+      <td>7</td>
+      <td>7</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>products</td>
+      <td>84.38</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Falhas</h2>
+<table border="1" class="dataframe fail">
+  <thead>
+    <tr style="text-align: right;">
+      <th>dataset</th>
+      <th>rule</th>
+      <th>status</th>
+      <th>severity</th>
+      <th>observed_value</th>
+      <th>threshold</th>
+      <th>failed_rows</th>
+      <th>detail</th>
+      <th>duration_ms</th>
+      <th>executed_at</th>
+      <th>run_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>customers</td>
+      <td>schema_columns_and_types</td>
+      <td>FAIL</td>
+      <td>critical</td>
+      <td>missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'state']</td>
+      <td>{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}</td>
+      <td>4</td>
+      <td>missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'state']</td>
+      <td>12.206</td>
+      <td>2026-10-15T14:20:16.046715+00:00</td>
+      <td>qr_06054b635e9f</td>
+    </tr>
+    <tr>
+      <td>products</td>
+      <td>schema_columns_and_types</td>
+      <td>FAIL</td>
+      <td>critical</td>
+      <td>missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']</td>
+      <td>{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}</td>
+      <td>4</td>
+      <td>missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']</td>
+      <td>0.249</td>
+      <td>2026-10-15T14:20:16.099365+00:00</td>
+      <td>qr_06054b635e9f</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

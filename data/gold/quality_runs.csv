@@ -1,17 +1,329 @@
-run_id,run_timestamp,dataset,rule,status,severity,observed_value,threshold,detail
-qr_20251006_001,2025-12-31 23:59:59,customers,schema_columns,PASS,critical,7,7,
-qr_20251006_001,2025-12-31 23:59:59,customers,pk_not_null,PASS,critical,0,0,
-qr_20251006_001,2025-12-31 23:59:59,customers,pk_unique,PASS,critical,0,0,
-qr_20251006_001,2025-12-31 23:59:59,customers,state_completeness,PASS,warning,0.99,0.99,
-qr_20251006_001,2025-12-31 23:59:59,products,unit_price_positive,PASS,critical,1.0,1.0,
-qr_20251006_001,2025-12-31 23:59:59,products,sku_unique,PASS,critical,0,0,
-qr_20251006_001,2025-12-31 23:59:59,orders,pk_unique,FAIL,critical,2,0,
-qr_20251006_001,2025-12-31 23:59:59,orders,customer_referential_integrity,FAIL,critical,0.9995000333311113,1.0,
-qr_20251006_001,2025-12-31 23:59:59,orders,status_domain,FAIL,critical,0.9988334111059263,0.999,
-qr_20251006_001,2025-12-31 23:59:59,orders,quantity_positive,PASS,critical,0.9991667222185188,0.999,
-qr_20251006_001,2025-12-31 23:59:59,orders,channel_completeness,FAIL,warning,0.9970001999866676,0.998,
-qr_20251006_001,2025-12-31 23:59:59,payments,order_referential_integrity,FAIL,critical,0.9995,1.0,
-qr_20251006_001,2025-12-31 23:59:59,payments,payment_method_domain,PASS,critical,0.9993333333333333,0.999,
-qr_20251006_001,2025-12-31 23:59:59,events,event_id_unique,PASS,critical,0,=0,
-qr_20251006_001,2025-12-31 23:59:59,events,timestamp_freshness,FAIL,critical,0.9999833333333333,1.0,
-qr_20251006_001,2025-12-31 23:59:59,events,customer_referential_integrity,PASS,critical,1.0,1.0,
+dataset,rule,status,severity,observed_value,threshold,failed_rows,detail,duration_ms,executed_at,run_id
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",2.346,2026-10-15T13:49:57.643023+00:00,qr_af69bc82ac70
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,24.874,2026-10-15T13:49:57.667961+00:00,qr_af69bc82ac70
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,8.214,2026-10-15T13:49:57.676232+00:00,qr_af69bc82ac70
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],30.427,2026-10-15T13:49:57.706692+00:00,qr_af69bc82ac70
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],1.314,2026-10-15T13:49:57.708033+00:00,qr_af69bc82ac70
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,0.97,2026-10-15T13:49:57.709023+00:00,qr_af69bc82ac70
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.003,2026-10-15T13:49:57.709039+00:00,qr_af69bc82ac70
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.194,2026-10-15T13:49:57.709245+00:00,qr_af69bc82ac70
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.351,2026-10-15T13:49:57.709607+00:00,qr_af69bc82ac70
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.183,2026-10-15T13:49:57.709802+00:00,qr_af69bc82ac70
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,3.143,2026-10-15T13:49:57.712970+00:00,qr_af69bc82ac70
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,1.495,2026-10-15T13:49:57.714500+00:00,qr_af69bc82ac70
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.636,2026-10-15T13:49:57.715414+00:00,qr_af69bc82ac70
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],3.868,2026-10-15T13:49:57.719512+00:00,qr_af69bc82ac70
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.009,2026-10-15T13:49:57.719558+00:00,qr_af69bc82ac70
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.841,2026-10-15T13:49:57.720423+00:00,qr_af69bc82ac70
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,1.658,2026-10-15T13:49:57.722113+00:00,qr_af69bc82ac70
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.41,2026-10-15T13:49:57.722540+00:00,qr_af69bc82ac70
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,2.088,2026-10-15T13:49:57.724643+00:00,qr_af69bc82ac70
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.426,2026-10-15T13:49:57.725084+00:00,qr_af69bc82ac70
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],4.83,2026-10-15T13:49:57.729937+00:00,qr_af69bc82ac70
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],6.736,2026-10-15T13:49:57.736704+00:00,qr_af69bc82ac70
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,0.551,2026-10-15T13:49:57.737276+00:00,qr_af69bc82ac70
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.558,2026-10-15T13:49:57.737852+00:00,qr_af69bc82ac70
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.002,2026-10-15T13:49:57.737865+00:00,qr_af69bc82ac70
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.388,2026-10-15T13:49:57.738263+00:00,qr_af69bc82ac70
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,1.696,2026-10-15T13:49:57.739978+00:00,qr_af69bc82ac70
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.824,2026-10-15T13:49:57.741822+00:00,qr_af69bc82ac70
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],2.304,2026-10-15T13:49:57.744152+00:00,qr_af69bc82ac70
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],1.722,2026-10-15T13:49:57.745897+00:00,qr_af69bc82ac70
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.538,2026-10-15T13:49:57.755069+00:00,qr_af69bc82ac70
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.005,2026-10-15T13:49:57.755247+00:00,qr_af69bc82ac70
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.659,2026-10-15T13:49:57.755926+00:00,qr_af69bc82ac70
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,4.017,2026-10-15T13:49:57.759975+00:00,qr_af69bc82ac70
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.835,2026-10-15T13:49:57.760835+00:00,qr_af69bc82ac70
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],3.002,2026-10-15T13:49:57.763864+00:00,qr_af69bc82ac70
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],5.366,2026-10-15T13:49:57.769266+00:00,qr_af69bc82ac70
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,16.283,2026-10-15T13:49:57.785591+00:00,qr_af69bc82ac70
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.758,2026-10-15T13:49:57.786389+00:00,qr_af69bc82ac70
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.004,2026-10-15T13:49:57.786413+00:00,qr_af69bc82ac70
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,4.807,2026-10-15T13:49:57.792911+00:00,qr_af69bc82ac70
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",1.894,2026-10-15T13:51:21.672890+00:00,qr_f812e0637c34
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,8.081,2026-10-15T13:51:21.680999+00:00,qr_f812e0637c34
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,4.575,2026-10-15T13:51:21.685610+00:00,qr_f812e0637c34
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],11.537,2026-10-15T13:51:21.697183+00:00,qr_f812e0637c34
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],4.185,2026-10-15T13:51:21.701424+00:00,qr_f812e0637c34
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,2.204,2026-10-15T13:51:21.703683+00:00,qr_f812e0637c34
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.004,2026-10-15T13:51:21.703718+00:00,qr_f812e0637c34
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.333,2026-10-15T13:51:21.704071+00:00,qr_f812e0637c34
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.759,2026-10-15T13:51:21.704853+00:00,qr_f812e0637c34
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.244,2026-10-15T13:51:21.705118+00:00,qr_f812e0637c34
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,2.371,2026-10-15T13:51:21.707517+00:00,qr_f812e0637c34
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,0.967,2026-10-15T13:51:21.708515+00:00,qr_f812e0637c34
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.307,2026-10-15T13:51:21.708840+00:00,qr_f812e0637c34
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],1.248,2026-10-15T13:51:21.710109+00:00,qr_f812e0637c34
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.004,2026-10-15T13:51:21.710132+00:00,qr_f812e0637c34
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.509,2026-10-15T13:51:21.710655+00:00,qr_f812e0637c34
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,2.084,2026-10-15T13:51:21.712779+00:00,qr_f812e0637c34
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.69,2026-10-15T13:51:21.713507+00:00,qr_f812e0637c34
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.481,2026-10-15T13:51:21.715020+00:00,qr_f812e0637c34
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,1.479,2026-10-15T13:51:21.716594+00:00,qr_f812e0637c34
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],7.335,2026-10-15T13:51:21.723989+00:00,qr_f812e0637c34
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],3.687,2026-10-15T13:51:21.727712+00:00,qr_f812e0637c34
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,0.553,2026-10-15T13:51:21.728290+00:00,qr_f812e0637c34
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.528,2026-10-15T13:51:21.728839+00:00,qr_f812e0637c34
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.002,2026-10-15T13:51:21.728855+00:00,qr_f812e0637c34
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.466,2026-10-15T13:51:21.729332+00:00,qr_f812e0637c34
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,1.465,2026-10-15T13:51:21.730843+00:00,qr_f812e0637c34
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,2.106,2026-10-15T13:51:21.733007+00:00,qr_f812e0637c34
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],4.655,2026-10-15T13:51:21.737744+00:00,qr_f812e0637c34
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],1.752,2026-10-15T13:51:21.739527+00:00,qr_f812e0637c34
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.653,2026-10-15T13:51:21.746801+00:00,qr_f812e0637c34
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.007,2026-10-15T13:51:21.746960+00:00,qr_f812e0637c34
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.666,2026-10-15T13:51:21.747643+00:00,qr_f812e0637c34
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,6.183,2026-10-15T13:51:21.753870+00:00,qr_f812e0637c34
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,1.216,2026-10-15T13:51:21.755143+00:00,qr_f812e0637c34
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],3.751,2026-10-15T13:51:21.758962+00:00,qr_f812e0637c34
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],3.795,2026-10-15T13:51:21.762789+00:00,qr_f812e0637c34
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,11.944,2026-10-15T13:51:21.774760+00:00,qr_f812e0637c34
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.61,2026-10-15T13:51:21.775393+00:00,qr_f812e0637c34
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.003,2026-10-15T13:51:21.775414+00:00,qr_f812e0637c34
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,3.276,2026-10-15T13:51:21.780453+00:00,qr_f812e0637c34
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",1.887,2026-10-15T14:07:06.223282+00:00,qr_436d0dc81190
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,8.777,2026-10-15T14:07:06.231964+00:00,qr_436d0dc81190
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,2.267,2026-10-15T14:07:06.233963+00:00,qr_436d0dc81190
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],10.228,2026-10-15T14:07:06.243986+00:00,qr_436d0dc81190
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],1.429,2026-10-15T14:07:06.245998+00:00,qr_436d0dc81190
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,1.096,2026-10-15T14:07:06.246972+00:00,qr_436d0dc81190
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.003,2026-10-15T14:07:06.246972+00:00,qr_436d0dc81190
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.178,2026-10-15T14:07:06.246972+00:00,qr_436d0dc81190
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.334,2026-10-15T14:07:06.246972+00:00,qr_436d0dc81190
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.177,2026-10-15T14:07:06.248009+00:00,qr_436d0dc81190
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,1.291,2026-10-15T14:07:06.249009+00:00,qr_436d0dc81190
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,0.319,2026-10-15T14:07:06.249009+00:00,qr_436d0dc81190
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.241,2026-10-15T14:07:06.250009+00:00,qr_436d0dc81190
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],0.933,2026-10-15T14:07:06.250009+00:00,qr_436d0dc81190
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.003,2026-10-15T14:07:06.250009+00:00,qr_436d0dc81190
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.465,2026-10-15T14:07:06.251011+00:00,qr_436d0dc81190
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,2.654,2026-10-15T14:07:06.254013+00:00,qr_436d0dc81190
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.431,2026-10-15T14:07:06.254013+00:00,qr_436d0dc81190
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.254,2026-10-15T14:07:06.255511+00:00,qr_436d0dc81190
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.433,2026-10-15T14:07:06.255511+00:00,qr_436d0dc81190
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],3.194,2026-10-15T14:07:06.259100+00:00,qr_436d0dc81190
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],3.672,2026-10-15T14:07:06.263188+00:00,qr_436d0dc81190
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,0.467,2026-10-15T14:07:06.263188+00:00,qr_436d0dc81190
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.477,2026-10-15T14:07:06.263188+00:00,qr_436d0dc81190
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.002,2026-10-15T14:07:06.263188+00:00,qr_436d0dc81190
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.412,2026-10-15T14:07:06.263188+00:00,qr_436d0dc81190
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,1.571,2026-10-15T14:07:06.265839+00:00,qr_436d0dc81190
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.385,2026-10-15T14:07:06.267056+00:00,qr_436d0dc81190
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],3.01,2026-10-15T14:07:06.270338+00:00,qr_436d0dc81190
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],1.979,2026-10-15T14:07:06.272336+00:00,qr_436d0dc81190
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.624,2026-10-15T14:07:06.278451+00:00,qr_436d0dc81190
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.004,2026-10-15T14:07:06.278451+00:00,qr_436d0dc81190
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.561,2026-10-15T14:07:06.279476+00:00,qr_436d0dc81190
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,3.444,2026-10-15T14:07:06.282536+00:00,qr_436d0dc81190
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.695,2026-10-15T14:07:06.283533+00:00,qr_436d0dc81190
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],3.687,2026-10-15T14:07:06.286577+00:00,qr_436d0dc81190
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],2.547,2026-10-15T14:07:06.288671+00:00,qr_436d0dc81190
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,8.528,2026-10-15T14:07:06.298429+00:00,qr_436d0dc81190
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.499,2026-10-15T14:07:06.298429+00:00,qr_436d0dc81190
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.002,2026-10-15T14:07:06.298429+00:00,qr_436d0dc81190
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,6.991,2026-10-15T14:07:06.306839+00:00,qr_436d0dc81190
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",3.407,2026-10-15T14:13:16.510149+00:00,qr_c154ccb0e828
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,13.562,2026-10-15T14:13:16.523741+00:00,qr_c154ccb0e828
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,2.638,2026-10-15T14:13:16.526404+00:00,qr_c154ccb0e828
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],15.862,2026-10-15T14:13:16.542292+00:00,qr_c154ccb0e828
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],1.266,2026-10-15T14:13:16.543583+00:00,qr_c154ccb0e828
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,0.842,2026-10-15T14:13:16.544442+00:00,qr_c154ccb0e828
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.003,2026-10-15T14:13:16.544456+00:00,qr_c154ccb0e828
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.171,2026-10-15T14:13:16.544639+00:00,qr_c154ccb0e828
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.319,2026-10-15T14:13:16.544968+00:00,qr_c154ccb0e828
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.17,2026-10-15T14:13:16.545150+00:00,qr_c154ccb0e828
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,1.541,2026-10-15T14:13:16.546708+00:00,qr_c154ccb0e828
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,0.383,2026-10-15T14:13:16.547111+00:00,qr_c154ccb0e828
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.253,2026-10-15T14:13:16.547377+00:00,qr_c154ccb0e828
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],0.9,2026-10-15T14:13:16.548291+00:00,qr_c154ccb0e828
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.003,2026-10-15T14:13:16.548305+00:00,qr_c154ccb0e828
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.373,2026-10-15T14:13:16.548687+00:00,qr_c154ccb0e828
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,1.647,2026-10-15T14:13:16.550349+00:00,qr_c154ccb0e828
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.275,2026-10-15T14:13:16.550636+00:00,qr_c154ccb0e828
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.04,2026-10-15T14:13:16.551688+00:00,qr_c154ccb0e828
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.431,2026-10-15T14:13:16.552132+00:00,qr_c154ccb0e828
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],6.091,2026-10-15T14:13:16.558244+00:00,qr_c154ccb0e828
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],3.499,2026-10-15T14:13:16.561767+00:00,qr_c154ccb0e828
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,0.388,2026-10-15T14:13:16.562171+00:00,qr_c154ccb0e828
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.425,2026-10-15T14:13:16.562609+00:00,qr_c154ccb0e828
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.002,2026-10-15T14:13:16.562621+00:00,qr_c154ccb0e828
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.358,2026-10-15T14:13:16.562988+00:00,qr_c154ccb0e828
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,1.201,2026-10-15T14:13:16.564202+00:00,qr_c154ccb0e828
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.133,2026-10-15T14:13:16.565350+00:00,qr_c154ccb0e828
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],1.945,2026-10-15T14:13:16.567318+00:00,qr_c154ccb0e828
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],1.388,2026-10-15T14:13:16.568723+00:00,qr_c154ccb0e828
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.472,2026-10-15T14:13:16.575670+00:00,qr_c154ccb0e828
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.004,2026-10-15T14:13:16.575700+00:00,qr_c154ccb0e828
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.502,2026-10-15T14:13:16.576213+00:00,qr_c154ccb0e828
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,3.474,2026-10-15T14:13:16.579704+00:00,qr_c154ccb0e828
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.637,2026-10-15T14:13:16.580355+00:00,qr_c154ccb0e828
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],2.779,2026-10-15T14:13:16.583151+00:00,qr_c154ccb0e828
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],2.228,2026-10-15T14:13:16.585396+00:00,qr_c154ccb0e828
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,12.791,2026-10-15T14:13:16.598202+00:00,qr_c154ccb0e828
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.476,2026-10-15T14:13:16.598696+00:00,qr_c154ccb0e828
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.002,2026-10-15T14:13:16.598708+00:00,qr_c154ccb0e828
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,6.594,2026-10-15T14:13:16.606569+00:00,qr_c154ccb0e828
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",2.767,2026-10-15T14:13:39.410393+00:00,qr_184f04ea0baf
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,11.188,2026-10-15T14:13:39.421742+00:00,qr_184f04ea0baf
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,4.712,2026-10-15T14:13:39.426579+00:00,qr_184f04ea0baf
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],5.766,2026-10-15T14:13:39.432397+00:00,qr_184f04ea0baf
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],1.922,2026-10-15T14:13:39.434359+00:00,qr_184f04ea0baf
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,0.488,2026-10-15T14:13:39.434876+00:00,qr_184f04ea0baf
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.005,2026-10-15T14:13:39.434900+00:00,qr_184f04ea0baf
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.216,2026-10-15T14:13:39.435132+00:00,qr_184f04ea0baf
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.46,2026-10-15T14:13:39.435607+00:00,qr_184f04ea0baf
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.497,2026-10-15T14:13:39.436124+00:00,qr_184f04ea0baf
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,2.78,2026-10-15T14:13:39.438958+00:00,qr_184f04ea0baf
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,1.043,2026-10-15T14:13:39.440050+00:00,qr_184f04ea0baf
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.529,2026-10-15T14:13:39.440602+00:00,qr_184f04ea0baf
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],1.474,2026-10-15T14:13:39.442098+00:00,qr_184f04ea0baf
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.004,2026-10-15T14:13:39.442117+00:00,qr_184f04ea0baf
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.536,2026-10-15T14:13:39.442670+00:00,qr_184f04ea0baf
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,1.959,2026-10-15T14:13:39.444655+00:00,qr_184f04ea0baf
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.485,2026-10-15T14:13:39.445162+00:00,qr_184f04ea0baf
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.433,2026-10-15T14:13:39.446614+00:00,qr_184f04ea0baf
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.82,2026-10-15T14:13:39.447456+00:00,qr_184f04ea0baf
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],4.471,2026-10-15T14:13:39.451962+00:00,qr_184f04ea0baf
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],6.864,2026-10-15T14:13:39.458870+00:00,qr_184f04ea0baf
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,0.613,2026-10-15T14:13:39.459508+00:00,qr_184f04ea0baf
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.599,2026-10-15T14:13:39.460124+00:00,qr_184f04ea0baf
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.002,2026-10-15T14:13:39.460138+00:00,qr_184f04ea0baf
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.437,2026-10-15T14:13:39.460588+00:00,qr_184f04ea0baf
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,1.93,2026-10-15T14:13:39.462543+00:00,qr_184f04ea0baf
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.415,2026-10-15T14:13:39.463983+00:00,qr_184f04ea0baf
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],2.605,2026-10-15T14:13:39.466621+00:00,qr_184f04ea0baf
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],2.828,2026-10-15T14:13:39.469592+00:00,qr_184f04ea0baf
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.705,2026-10-15T14:13:39.476047+00:00,qr_184f04ea0baf
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.005,2026-10-15T14:13:39.476099+00:00,qr_184f04ea0baf
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.803,2026-10-15T14:13:39.476922+00:00,qr_184f04ea0baf
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,5.461,2026-10-15T14:13:39.482422+00:00,qr_184f04ea0baf
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,1.089,2026-10-15T14:13:39.483543+00:00,qr_184f04ea0baf
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],7.75,2026-10-15T14:13:39.491334+00:00,qr_184f04ea0baf
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],3.63,2026-10-15T14:13:39.495008+00:00,qr_184f04ea0baf
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,14.92,2026-10-15T14:13:39.509957+00:00,qr_184f04ea0baf
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.712,2026-10-15T14:13:39.510694+00:00,qr_184f04ea0baf
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.002,2026-10-15T14:13:39.510709+00:00,qr_184f04ea0baf
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,4.017,2026-10-15T14:13:39.516586+00:00,qr_184f04ea0baf
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",5.933,2026-10-15T14:16:19.848882+00:00,qr_6cde3f617ece
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,16.291,2026-10-15T14:16:41.079195+00:00,qr_6cde3f617ece
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,4.561,2026-10-15T14:16:41.083841+00:00,qr_6cde3f617ece
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],21.222,2026-10-15T14:16:41.105122+00:00,qr_6cde3f617ece
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],1.593,2026-10-15T14:16:41.106741+00:00,qr_6cde3f617ece
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,2.782,2026-10-15T14:16:41.109612+00:00,qr_6cde3f617ece
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.032,2026-10-15T14:16:41.109747+00:00,qr_6cde3f617ece
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.388,2026-10-15T14:16:41.110186+00:00,qr_6cde3f617ece
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,1.877,2026-10-15T14:16:42.687162+00:00,qr_6cde3f617ece
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,1.427,2026-10-15T14:16:42.688658+00:00,qr_6cde3f617ece
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,7.791,2026-10-15T14:16:42.696503+00:00,qr_6cde3f617ece
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,1.081,2026-10-15T14:16:42.697642+00:00,qr_6cde3f617ece
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.373,2026-10-15T14:16:42.698026+00:00,qr_6cde3f617ece
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],1.343,2026-10-15T14:16:42.699387+00:00,qr_6cde3f617ece
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.006,2026-10-15T14:16:42.699420+00:00,qr_6cde3f617ece
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,3.713,2026-10-15T14:16:43.476341+00:00,qr_6cde3f617ece
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,2.595,2026-10-15T14:16:43.478977+00:00,qr_6cde3f617ece
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,1.657,2026-10-15T14:16:44.134421+00:00,qr_6cde3f617ece
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,4.675,2026-10-15T14:16:44.139226+00:00,qr_6cde3f617ece
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,1.204,2026-10-15T14:16:44.140468+00:00,qr_6cde3f617ece
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],6.562,2026-10-15T14:16:44.147159+00:00,qr_6cde3f617ece
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],8.759,2026-10-15T14:16:44.155948+00:00,qr_6cde3f617ece
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,1.343,2026-10-15T14:16:44.157341+00:00,qr_6cde3f617ece
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.609,2026-10-15T14:16:44.157979+00:00,qr_6cde3f617ece
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.005,2026-10-15T14:16:44.158000+00:00,qr_6cde3f617ece
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,4.475,2026-10-15T14:16:45.073395+00:00,qr_6cde3f617ece
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,2.463,2026-10-15T14:16:45.075945+00:00,qr_6cde3f617ece
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,2.006,2026-10-15T14:16:45.078030+00:00,qr_6cde3f617ece
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],2.6,2026-10-15T14:16:45.080666+00:00,qr_6cde3f617ece
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],1.72,2026-10-15T14:16:45.082404+00:00,qr_6cde3f617ece
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.932,2026-10-15T14:16:45.091278+00:00,qr_6cde3f617ece
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.006,2026-10-15T14:16:45.091304+00:00,qr_6cde3f617ece
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,2.171,2026-10-15T14:16:45.911355+00:00,qr_6cde3f617ece
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,4.234,2026-10-15T14:16:45.915628+00:00,qr_6cde3f617ece
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.842,2026-10-15T14:16:45.916493+00:00,qr_6cde3f617ece
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],3.919,2026-10-15T14:16:45.920448+00:00,qr_6cde3f617ece
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],3.462,2026-10-15T14:16:45.923941+00:00,qr_6cde3f617ece
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,19.914,2026-10-15T14:16:47.793175+00:00,qr_6cde3f617ece
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.781,2026-10-15T14:16:47.793975+00:00,qr_6cde3f617ece
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.006,2026-10-15T14:16:47.794002+00:00,qr_6cde3f617ece
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,4.63,2026-10-15T14:16:47.800650+00:00,qr_6cde3f617ece
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",5,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'registration_date', 'state']",2.805,2026-10-15T14:20:06.738561+00:00,qr_3a6e79e81c41
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,10.829,2026-10-15T14:20:06.749435+00:00,qr_3a6e79e81c41
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,2.891,2026-10-15T14:20:06.752348+00:00,qr_3a6e79e81c41
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],12.933,2026-10-15T14:20:06.765306+00:00,qr_3a6e79e81c41
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],1.133,2026-10-15T14:20:06.766461+00:00,qr_3a6e79e81c41
+customers,state_completeness,PASS,warning,0.99,0.99,50,null_rows=50,0.888,2026-10-15T14:20:06.767366+00:00,qr_3a6e79e81c41
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.003,2026-10-15T14:20:06.767381+00:00,qr_3a6e79e81c41
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.173,2026-10-15T14:20:06.767565+00:00,qr_3a6e79e81c41
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.324,2026-10-15T14:20:06.767899+00:00,qr_3a6e79e81c41
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.167,2026-10-15T14:20:06.768078+00:00,qr_3a6e79e81c41
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,1.558,2026-10-15T14:20:06.769650+00:00,qr_3a6e79e81c41
+products,unit_price_positive,FAIL,error,0.96,1.0,12,non_positive_rows=12,0.826,2026-10-15T14:20:06.770494+00:00,qr_3a6e79e81c41
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.271,2026-10-15T14:20:06.770781+00:00,qr_3a6e79e81c41
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],1.626,2026-10-15T14:20:06.772433+00:00,qr_3a6e79e81c41
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.014,2026-10-15T14:20:06.772471+00:00,qr_3a6e79e81c41
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.8,2026-10-15T14:20:06.773295+00:00,qr_3a6e79e81c41
+orders,order_id_unique,FAIL,critical,30000,unique,4,duplicate_rows=4,1.584,2026-10-15T14:20:06.774905+00:00,qr_3a6e79e81c41
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.301,2026-10-15T14:20:06.775222+00:00,qr_3a6e79e81c41
+orders,customer_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,1.252,2026-10-15T14:20:06.776486+00:00,qr_3a6e79e81c41
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.428,2026-10-15T14:20:06.776928+00:00,qr_3a6e79e81c41
+orders,order_status_domain,FAIL,error,0.998833,"['cancelled', 'completed', 'pending', 'returned']",35,invalid_values=['in_review'],3.508,2026-10-15T14:20:06.780453+00:00,qr_3a6e79e81c41
+orders,channel_domain,FAIL,error,0.997,"['app', 'marketplace', 'store', 'unknown', 'web']",90,invalid_values=[nan],3.482,2026-10-15T14:20:06.783953+00:00,qr_3a6e79e81c41
+orders,quantity_positive,FAIL,error,0.999167,1.0,25,non_positive_rows=25,0.351,2026-10-15T14:20:06.784316+00:00,qr_3a6e79e81c41
+orders,channel_completeness,FAIL,warning,0.997,0.998,90,null_rows=90,0.42,2026-10-15T14:20:06.784748+00:00,qr_3a6e79e81c41
+orders,row_count_expected,PASS,error,30002,min=28000; max=32000,0,min=28000; max=32000,0.002,2026-10-15T14:20:06.784760+00:00,qr_3a6e79e81c41
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.351,2026-10-15T14:20:06.785120+00:00,qr_3a6e79e81c41
+payments,payment_id_unique,PASS,critical,30000,unique,0,duplicate_rows=0,1.242,2026-10-15T14:20:06.786375+00:00,qr_3a6e79e81c41
+payments,order_id_referential_integrity,FAIL,critical,0.9995,1.0,15,orphan_rows=15,0.914,2026-10-15T14:20:06.787300+00:00,qr_3a6e79e81c41
+payments,payment_method_domain,FAIL,error,0.999333,"['boleto', 'credit_card', 'pix', 'wallet']",20,invalid_values=['crypto'],2.159,2026-10-15T14:20:06.789478+00:00,qr_3a6e79e81c41
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],1.624,2026-10-15T14:20:06.791123+00:00,qr_3a6e79e81c41
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.393,2026-10-15T14:20:06.796607+00:00,qr_3a6e79e81c41
+payments,row_count_expected,PASS,error,30000,min=28000; max=32000,0,min=28000; max=32000,0.003,2026-10-15T14:20:06.796632+00:00,qr_3a6e79e81c41
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.434,2026-10-15T14:20:06.797077+00:00,qr_3a6e79e81c41
+events,event_id_unique,PASS,critical,60000,unique,0,duplicate_rows=0,3.075,2026-10-15T14:20:06.800165+00:00,qr_3a6e79e81c41
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.584,2026-10-15T14:20:06.800762+00:00,qr_3a6e79e81c41
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],2.652,2026-10-15T14:20:06.803430+00:00,qr_3a6e79e81c41
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],3.027,2026-10-15T14:20:06.806477+00:00,qr_3a6e79e81c41
+events,event_timestamp_freshness,FAIL,critical,0.999983,1.0,1,future_or_invalid_rows=1,11.575,2026-10-15T14:20:06.818073+00:00,qr_3a6e79e81c41
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.453,2026-10-15T14:20:06.818552+00:00,qr_3a6e79e81c41
+events,row_count_expected,PASS,error,60000,min=55000; max=65000,0,min=55000; max=65000,0.002,2026-10-15T14:20:06.818564+00:00,qr_3a6e79e81c41
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,3.699,2026-10-15T14:20:06.823950+00:00,qr_3a6e79e81c41
+customers,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'state']","{'customer_id': 'int64', 'customer_segment': 'object', 'state': 'object', 'city': 'object', 'registration_date': 'datetime64[ns]', 'marketing_opt_in': 'bool', 'customer_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['city', 'customer_segment', 'customer_status', 'state']",12.206,2026-10-15T14:20:16.046715+00:00,qr_06054b635e9f
+customers,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,19.941,2026-10-15T14:20:16.066710+00:00,qr_06054b635e9f
+customers,customer_id_unique,PASS,critical,5000,unique,0,duplicate_rows=0,8.539,2026-10-15T14:20:16.075344+00:00,qr_06054b635e9f
+customers,customer_status_domain,PASS,error,1.0,"['active', 'inactive']",0,invalid_values=[],20.801,2026-10-15T14:20:16.096204+00:00,qr_06054b635e9f
+customers,customer_segment_domain,PASS,error,1.0,"['corporate', 'mass', 'premium']",0,invalid_values=[],2.373,2026-10-15T14:20:16.098627+00:00,qr_06054b635e9f
+customers,state_completeness,PASS,warning,1.0,0.99,0,null_rows=0,0.425,2026-10-15T14:20:16.099082+00:00,qr_06054b635e9f
+customers,row_count_expected,PASS,error,5000,min=4500; max=5500,0,min=4500; max=5500,0.003,2026-10-15T14:20:16.099100+00:00,qr_06054b635e9f
+products,schema_columns_and_types,FAIL,critical,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']","{'product_id': 'int64', 'sku': 'object', 'department': 'object', 'category': 'object', 'unit_price': 'float64', 'cost_price': 'float64', 'supplier_id': 'int64', 'product_status': 'object'}",4,"missing=[]; unexpected=[]; wrong_types=['category', 'department', 'product_status', 'sku']",0.249,2026-10-15T14:20:16.099365+00:00,qr_06054b635e9f
+products,product_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.446,2026-10-15T14:20:16.099825+00:00,qr_06054b635e9f
+products,product_id_unique,PASS,critical,300,unique,0,duplicate_rows=0,0.246,2026-10-15T14:20:16.100086+00:00,qr_06054b635e9f
+products,sku_unique,PASS,critical,300,unique,0,duplicate_rows=0,6.226,2026-10-15T14:20:16.106355+00:00,qr_06054b635e9f
+products,unit_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,3.19,2026-10-15T14:20:16.109593+00:00,qr_06054b635e9f
+products,cost_price_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.587,2026-10-15T14:20:16.110209+00:00,qr_06054b635e9f
+products,product_status_domain,PASS,error,1.0,"['active', 'discontinued']",0,invalid_values=[],1.914,2026-10-15T14:20:16.112160+00:00,qr_06054b635e9f
+products,row_count_expected,PASS,error,300,min=250; max=350,0,min=250; max=350,0.005,2026-10-15T14:20:16.112186+00:00,qr_06054b635e9f
+orders,order_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.62,2026-10-15T14:20:16.112825+00:00,qr_06054b635e9f
+orders,order_id_unique,PASS,critical,29985,unique,0,duplicate_rows=0,1.515,2026-10-15T14:20:16.114372+00:00,qr_06054b635e9f
+orders,customer_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,1.859,2026-10-15T14:20:16.116265+00:00,qr_06054b635e9f
+orders,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,1.795,2026-10-15T14:20:16.118094+00:00,qr_06054b635e9f
+orders,product_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.825,2026-10-15T14:20:16.118950+00:00,qr_06054b635e9f
+orders,order_status_domain,PASS,error,1.0,"['cancelled', 'completed', 'pending', 'returned']",0,invalid_values=[],7.709,2026-10-15T14:20:16.126709+00:00,qr_06054b635e9f
+orders,channel_domain,PASS,error,1.0,"['app', 'marketplace', 'store', 'unknown', 'web']",0,invalid_values=[],2.39,2026-10-15T14:20:16.129144+00:00,qr_06054b635e9f
+orders,quantity_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,1.324,2026-10-15T14:20:16.130490+00:00,qr_06054b635e9f
+orders,channel_completeness,PASS,warning,1.0,0.998,0,null_rows=0,0.419,2026-10-15T14:20:16.130935+00:00,qr_06054b635e9f
+orders,row_count_expected,PASS,error,29985,min=28000; max=32000,0,min=28000; max=32000,0.003,2026-10-15T14:20:16.130953+00:00,qr_06054b635e9f
+payments,payment_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.8,2026-10-15T14:20:16.131773+00:00,qr_06054b635e9f
+payments,payment_id_unique,PASS,critical,29970,unique,0,duplicate_rows=0,1.432,2026-10-15T14:20:16.133241+00:00,qr_06054b635e9f
+payments,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,0.947,2026-10-15T14:20:16.134210+00:00,qr_06054b635e9f
+payments,payment_method_domain,PASS,error,1.0,"['boleto', 'credit_card', 'pix', 'wallet']",0,invalid_values=[],2.576,2026-10-15T14:20:16.136815+00:00,qr_06054b635e9f
+payments,payment_status_domain,PASS,error,1.0,"['approved', 'failed', 'pending', 'refunded']",0,invalid_values=[],5.388,2026-10-15T14:20:16.142239+00:00,qr_06054b635e9f
+payments,amount_paid_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.73,2026-10-15T14:20:16.151124+00:00,qr_06054b635e9f
+payments,row_count_expected,PASS,error,29970,min=28000; max=32000,0,min=28000; max=32000,0.005,2026-10-15T14:20:16.151168+00:00,qr_06054b635e9f
+events,event_id_not_null,PASS,critical,1.0,1.0,0,null_rows=0,0.779,2026-10-15T14:20:16.151964+00:00,qr_06054b635e9f
+events,event_id_unique,PASS,critical,59995,unique,0,duplicate_rows=0,8.723,2026-10-15T14:20:16.160728+00:00,qr_06054b635e9f
+events,customer_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,1.01,2026-10-15T14:20:16.161768+00:00,qr_06054b635e9f
+events,event_type_domain,PASS,error,1.0,"['add_to_cart', 'checkout_started', 'page_view', 'purchase', 'search', 'support_contact']",0,invalid_values=[],3.159,2026-10-15T14:20:16.164956+00:00,qr_06054b635e9f
+events,device_type_domain,PASS,error,1.0,"['desktop', 'mobile', 'tablet']",0,invalid_values=[],2.469,2026-10-15T14:20:16.167447+00:00,qr_06054b635e9f
+events,event_timestamp_freshness,PASS,critical,1.0,1.0,0,future_or_invalid_rows=0,13.276,2026-10-15T14:20:16.180742+00:00,qr_06054b635e9f
+events,session_duration_seconds_positive,PASS,error,1.0,1.0,0,non_positive_rows=0,0.5,2026-10-15T14:20:16.181260+00:00,qr_06054b635e9f
+events,row_count_expected,PASS,error,59995,min=55000; max=65000,0,min=55000; max=65000,0.002,2026-10-15T14:20:16.181274+00:00,qr_06054b635e9f
+events,order_id_referential_integrity,PASS,critical,1.0,1.0,0,orphan_rows=0,3.786,2026-10-15T14:20:16.186494+00:00,qr_06054b635e9f
